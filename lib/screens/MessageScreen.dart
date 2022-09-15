@@ -1,5 +1,10 @@
+import 'package:firebase/widgets/chat/messages.dart';
+import 'package:firebase/widgets/chat/send_message.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../widgets/chat/send_message.dart';
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen({Key? key}) : super(key: key);
@@ -12,26 +17,23 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('chats/Ci8IICcputQBaEs0PNYP/messages')
-            .snapshots(),
-        builder: ((context, snapshot) => ListView.builder(
-              itemBuilder: ((context, index) {
-                return Container(
-                  height: 24,
-                  child: Text(snapshot.data!.docs[index]['text']),
-                );
+        appBar: AppBar(
+          actions: [
+            ElevatedButton(
+              onPressed: (() {
+                FirebaseAuth.instance.signOut();
               }),
-              itemCount: snapshot.data!.docs.length,
-            )),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => FirebaseFirestore.instance
-            .collection('chats/Ci8IICcputQBaEs0PNYP/messages')
-            .add({'text': 'added on device!'}),
-        child: Icon(Icons.add),
-      ),
-    );
+              child: Text('Logout'),
+            )
+          ],
+        ),
+        body: Container(
+          child: Column(
+            children: <Widget>[
+              Expanded(child: Messages()),
+              SendMessage(),
+            ],
+          ),
+        ));
   }
 }

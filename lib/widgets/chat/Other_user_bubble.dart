@@ -1,4 +1,4 @@
-import 'package:firebase/widgets/chat/other_users_bubble_messgae.dart';
+import 'package:firebase/widgets/chat/current_users_bubble_messgae.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,11 +15,15 @@ class CurrentUserBubble extends StatelessWidget {
         : Row(
             children: [
               Container(
-                width: 150,
-                color: const Color.fromARGB(255, 156, 156, 156),
-                child: Text(message),
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.all(5),
+                width: 100,
+                color: Colors.teal,
+                child: Text(
+                  message,
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              Text(userr)
             ],
           );
   }

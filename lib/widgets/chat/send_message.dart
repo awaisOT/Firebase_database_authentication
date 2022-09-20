@@ -13,7 +13,7 @@ class _SendMessageState extends State<SendMessage> {
   TextEditingController cntrlr = TextEditingController();
   var message = '';
   void sendMessage() async {
-    final auth = await FirebaseAuth.instance.currentUser!.uid;
+    final auth = FirebaseAuth.instance.currentUser!.uid;
     FocusScope.of(context).unfocus();
     cntrlr.clear();
     FirebaseFirestore.instance.collection('chat').add({

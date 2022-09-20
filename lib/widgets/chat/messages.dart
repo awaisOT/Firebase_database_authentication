@@ -23,8 +23,10 @@ class Messages extends StatelessWidget {
         return ListView.builder(
           reverse: true,
           itemBuilder: ((context, index) {
-            return CurrentUserBubble(snapshot.data!.docs[index]['text'],
-                snapshot.data!.docs[index]['userID']);
+            return CurrentUserBubble(
+              snapshot.data!.docs[index]['text'],
+              snapshot.data!.docs[index]['userID'],
+            );
           }),
           itemCount: snapshot.data!.docs.length,
         );

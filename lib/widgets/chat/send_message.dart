@@ -14,6 +14,8 @@ class _SendMessageState extends State<SendMessage> {
   var message = '';
   void sendMessage() async {
     final auth = FirebaseAuth.instance.currentUser!.uid;
+    final username = FirebaseAuth.instance.currentUser!.email;
+
     FocusScope.of(context).unfocus();
     cntrlr.clear();
     FirebaseFirestore.instance.collection('chat').add({
